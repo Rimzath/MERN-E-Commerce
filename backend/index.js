@@ -27,20 +27,19 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  // To find record from the database
   const { email, password } = req.body;
   FormDataModel.findOne({ email: email }).then((user) => {
     if (user) {
-      // If user found then these 2 cases
       if (user.password === password) {
-        res.json("Success");
+        res.json({
+          success: true,
+          user: { email: user.email, userType: user.userType },
+        });
       } else {
-        res.json("Wrong password");
+        res.json({ success: false, message: "Wrong password" });
       }
-    }
-    // If user not found then
-    else {
-      res.json("No records found! ");
+    } else {
+      res.json({ success: false, message: "No records found!" });
     }
   });
 });
