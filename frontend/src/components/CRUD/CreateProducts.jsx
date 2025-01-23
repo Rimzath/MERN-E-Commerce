@@ -1,11 +1,35 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateProducts = () => {
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const navigate = useNavigate();
+
+  const Submit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:3001/create", {
+        productName,
+        description,
+        price,
+        quantity,
+      })
+      .then((result) => {
+        console.log(result);
+        navigate("/home");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleCancel = () => {
+    navigate("/home");
+  };
 
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
@@ -53,10 +77,18 @@ const CreateProducts = () => {
             />
           </div>
           <div className="flexContainer">
-            <button className="btnSubm btn btn-success" id="btnRecor">
+            <button
+              className="btnSubm btn btn-success"
+              id="btnRecor"
+              onClick={Submit}
+            >
               Submit
             </button>
-            <button className="btn btn-danger" id="btnCancelAdd">
+            <button
+              onClick={handleCancel}
+              className="btn btn-success"
+              id="btnCancelAdd"
+            >
               Cancel
             </button>
           </div>
