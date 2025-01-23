@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const FormDataModel = require("./models/formdata");
+const ProductModel = require("./models/Products");
 
 const app = express();
 app.use(express.json());
@@ -42,6 +43,18 @@ app.post("/login", (req, res) => {
       res.json({ success: false, message: "No records found!" });
     }
   });
+});
+
+app.get("/", (req, res) => {
+  ProductModel.find({})
+    .then((products) => res.json(products))
+    .catch((err) => res.json(err));
+});
+
+app.post("/create", (req, res) => {
+  ProductModel.create(req.body)
+    .then((Products) => res.json(Products))
+    .catch((err) => res.json(err));
 });
 
 app.listen(3001, () => {
