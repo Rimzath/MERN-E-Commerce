@@ -1,9 +1,19 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001") // axios.get chama a rota app.get
+      .then((result) => {
+        setProduct(result.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
@@ -31,7 +41,7 @@ const Products = () => {
             {products.map((product) => {
               console.log(product);
               return (
-                // eslint-disable-next-line react/jsx-key
+                // eslint-disable-next-line react/jsx-key//
                 <tr key={product._id}>
                   <td>{product.name}</td>
                   <td>{product.email}</td>
