@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import AdminDashboard from "./components/AdminDashboard.jsx";
-import CreateUser from "./components/CRUD/Createuser.jsx";
+import CreateProducts from "./components/CRUD/CreateProducts.jsx";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
-        <Route path="/create" element={<CreateUser />}></Route>
+        <Route path="/create" element={<CreateProducts />}></Route>
       </Routes>
     </BrowserRouter>
   );

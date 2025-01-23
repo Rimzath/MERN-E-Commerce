@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const users = () => {
-  const [users, setUsers] = useState([]);
+const Products = () => {
+  const [products, setProduct] = useState([]);
 
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
@@ -21,24 +21,24 @@ const users = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Age</th>
-              <th colSpan="2">Action</th>
+              <th>Product</th>
+              <th>Discription</th>
+              <th>Price</th>
+              <th colSpan="2">Quantity Availablee</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => {
-              console.log(user);
+            {products.map((product) => {
+              console.log(product);
               return (
                 // eslint-disable-next-line react/jsx-key
-                <tr key={user._id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.age}</td>
+                <tr key={product._id}>
+                  <td>{product.name}</td>
+                  <td>{product.email}</td>
+                  <td>{product.age}</td>
                   <td>
                     <Link
-                      to={`/update/${user._id}`}
+                      to={`/update/${product._id}`}
                       className="btnEdit btn btn-success"
                     >
                       Update
@@ -48,7 +48,7 @@ const users = () => {
                     <button
                       className="btn btn-danger"
                       id="btnDelete"
-                      onClick={() => handleDelete(user._id)}
+                      onClick={() => handleDelete(product._id)}
                     >
                       Delete
                     </button>
@@ -63,4 +63,4 @@ const users = () => {
   );
 };
 
-export default users;
+export default Products;
