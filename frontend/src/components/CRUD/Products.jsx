@@ -8,7 +8,7 @@ const Products = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001") // axios.get chama a rota app.get
+      .get("http://localhost:3001")
       .then((result) => {
         setProduct(result.data);
       })
@@ -23,7 +23,7 @@ const Products = () => {
           <h2>Home Page</h2>
         </div>
 
-        {/*  Botão que chama a tela ou rota criar usuário, usando um link */}
+        {}
         <Link to="/create" className="btn btn-success">
           Add +
         </Link>
@@ -42,7 +42,6 @@ const Products = () => {
             {products.map((product) => {
               console.log(product);
               return (
-                // eslint-disable-next-line react/jsx-key//
                 <tr key={product._id}>
                   <td>{product.productName}</td>
                   <td>{product.description}</td>
