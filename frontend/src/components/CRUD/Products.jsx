@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Products = () => {
@@ -34,7 +34,8 @@ const Products = () => {
               <th>Product</th>
               <th>Discription</th>
               <th>Price</th>
-              <th colSpan="2">Quantity Availablee</th>
+              <th>Quantity Availablee</th>
+              <th colSpan="2">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -43,9 +44,10 @@ const Products = () => {
               return (
                 // eslint-disable-next-line react/jsx-key//
                 <tr key={product._id}>
-                  <td>{product.name}</td>
-                  <td>{product.email}</td>
-                  <td>{product.age}</td>
+                  <td>{product.productName}</td>
+                  <td>{product.description}</td>
+                  <td>{product.price}</td>
+                  <td>{product.quantity}</td>
                   <td>
                     <Link
                       to={`/update/${product._id}`}
