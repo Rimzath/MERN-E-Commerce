@@ -79,6 +79,13 @@ app.put("/updateProducts/:id", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.delete("/deleteproducts/:id", (req, res) => {
+  const id = req.params.id;
+  ProductModel.findByIdAndDelete({ _id: id })
+    .then((res) => res.json(res))
+    .catch((err) => res.json(err));
+});
+
 app.listen(3001, () => {
   console.log("Server listining at port http://localhost:3001");
 });
