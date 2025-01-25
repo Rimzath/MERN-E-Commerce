@@ -57,6 +57,28 @@ app.post("/create", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.get("/getProducts/:id", (req, res) => {
+  const id = req.params.id;
+  ProductModel.findById({ _id: id })
+    .then((products) => res.json(products))
+    .catch((err) => res.json(err));
+});
+
+app.put("/updateProducts/:id", (req, res) => {
+  const id = req.params.id;
+  ProductModel.findByIdAndUpdate(
+    { _id: id },
+    {
+      productName: req.body.productName,
+      description: req.body.description,
+      price: req.body.price,
+      quantity: req.body.quantity,
+    }
+  )
+    .then((products) => res.json(products))
+    .catch((err) => res.json(err));
+});
+
 app.listen(3001, () => {
   console.log("Server listining at port http://localhost:3001");
 });
