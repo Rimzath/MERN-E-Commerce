@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -28,6 +29,7 @@ const Cart = () => {
   return (
     <div className="d-flex vh-100 bg-light justify-content-center align-items-center">
       <div className="tab vw-100 w-50 bg-white rounded p-3">
+        <Navbar />
         <h2>🛒 Cart</h2>
         <Link to="/home" className="btn btn-primary my-3">
           ← Back to Home
