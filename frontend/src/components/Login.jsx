@@ -14,6 +14,18 @@ const Login = () => {
 
     axios
       .post("http://localhost:3001/login", { email, password })
+      .then((res) => {
+        if (res.data.success) {
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          window.location.href = "/home"; // Redirect to home page
+        } else {
+          alert(res.data.message);
+        }
+      })
+      .catch((err) => console.error("Login error:", err));
+
+    axios
+      .post("http://localhost:3001/login", { email, password })
       .then((result) => {
         if (result.data.success) {
           const { userType } = result.data.user; // Fetch userType from response
