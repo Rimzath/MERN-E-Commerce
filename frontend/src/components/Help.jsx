@@ -7,7 +7,6 @@ const Help = () => {
       <Navbar />
       <h2 className="text-center mb-4">Help & Support</h2>
 
-      {/* FAQ Section */}
       <div className="accordion" id="faqAccordion">
         <div className="accordion-item">
           <h2 className="accordion-header">
