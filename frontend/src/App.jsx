@@ -6,6 +6,7 @@ import AdminDashboard from "./components/AdminDashboard.jsx";
 import CreateProducts from "./components/CRUD/CreateProducts.jsx";
 import UpdateProducts from "./components/CRUD/UpdateProducts.jsx";
 import Help from "./components/Help.jsx";
+import Cart from "./components/Cart.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/create" element={<CreateProducts />}></Route>
         <Route path="/update/:id" element={<UpdateProducts />}></Route>
         <Route path="/help" element={<Help />}></Route>
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

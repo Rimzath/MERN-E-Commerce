@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProduct] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetchProducts();
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(savedCart);
   }, []);
 
   // Fetch products from the server
@@ -33,14 +35,24 @@ const Products = () => {
     }
   };
 
+  // Handle Add to Cart
+  const handleAddToCart = (product) => {
+    const updatedCart = [...cart, product];
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save to localStorage
+  };
+
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
       <div className="tab vw-100 w-50 bg-white rounded p-3">
-        <div>
+        <div className="d-flex justify-content-between align-items-center">
           <h2>Home Page</h2>
+          <Link to="../cart" className="btn btn-dark">
+            🛒 Cart ({cart.length})
+          </Link>
         </div>
 
-        <Link to="/create" className="btn btn-success">
+        <Link to="/create" className="btn btn-success my-3">
           Add +
         </Link>
 
@@ -60,12 +72,12 @@ const Products = () => {
                 <tr key={product._id}>
                   <td>{product.productName}</td>
                   <td>{product.description}</td>
-                  <td>{product.price}</td>
+                  <td>${product.price}</td>
                   <td>{product.quantity}</td>
                   <td>
                     <Link
                       to={`/update/${product._id}`}
-                      className="btnEdit btn btn-success"
+                      className="btn btn-success"
                     >
                       Update
                     </Link>
@@ -73,14 +85,16 @@ const Products = () => {
                   <td>
                     <button
                       className="btn btn-danger"
-                      id="btnDelete"
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete
                     </button>
                   </td>
                   <td>
-                    <button className="btn btn-warning" id="btnWarning">
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => handleAddToCart(product)}
+                    >
                       Add to Cart
                     </button>
                   </td>
