@@ -4,8 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
+    <nav
+      className="navbar navbar-expand-lg navbar-dark bg-dark w-100"
+      style={{ width: "100vw" }}
+    >
+      <div className="container-fluid">
         <Link className="navbar-brand" to="/home">
           MyShop-LAPTOPS
         </Link>
@@ -35,7 +38,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/cart">
-                Add to Cart
+                Add to Cart 🛒
               </Link>
             </li>
             <li className="nav-item">
