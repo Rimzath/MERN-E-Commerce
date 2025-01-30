@@ -1,6 +1,7 @@
 // import React from 'react';
 import { Link } from "react-router-dom";
 import Products from "./CRUD/Products";
+import Navbar from "./Navbar";
 const Home = () => {
   return (
     <div
@@ -9,6 +10,7 @@ const Home = () => {
       }}
       className="d-flex flex-column justify-content-center align-items-center text-center vh-100"
     >
+      <Navbar />
       <Products />
       <h5>Login Successfully</h5>
       <Link to="/login" className="btn btn-light my-5">
