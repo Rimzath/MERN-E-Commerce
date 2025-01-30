@@ -51,7 +51,7 @@ const Products = () => {
               <th>Description</th>
               <th>Price</th>
               <th>Quantity Available</th>
-              <th colSpan="2">Action</th>
+              <th colSpan="3">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -77,6 +77,11 @@ const Products = () => {
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button className="btn btn-warning" id="btnWarning">
+                      Add to Cart
                     </button>
                   </td>
                 </tr>
