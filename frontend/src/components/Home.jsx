@@ -1,16 +1,16 @@
-// import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Products from "./CRUD/Products";
 import Navbar from "./Navbar";
-import axios from "axios";
-import { useEffect, useState } from "react";
+
 const Home = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    // Retrieve the user from localStorage
+    const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      setUser(loggedInUser);
+      setUser(JSON.parse(loggedInUser)); // Parse the stored user data
     }
   }, []);
 
@@ -19,17 +19,22 @@ const Home = () => {
       <Navbar />
       <Products />
       <h5>
-        Welcome {user ? user.email : "Guest"}
+        Welcome {user && user.email ? user.email : "Guest"}
         <br />
-        Login Successfully
+        {user ? "Login Successfully" : "Please log in to continue"}
       </h5>
-      <Link
-        to="/login"
-        className="btn btn-light my-5"
-        onClick={() => localStorage.removeItem("user")}
-      >
-        Logout
-      </Link>
+      {user && (
+        <Link
+          to="/login"
+          className="btn btn-light my-5"
+          onClick={() => {
+            localStorage.removeItem("user");
+            setUser(null); // Update state to reflect logout
+          }}
+        >
+          Logout
+        </Link>
+      )}
     </div>
   );
 };
