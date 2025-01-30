@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import AdminDashboard from "./components/AdminDashboard.jsx";
 import CreateProducts from "./components/CRUD/CreateProducts.jsx";
 import UpdateProducts from "./components/CRUD/UpdateProducts.jsx";
+import Help from "./components/Help.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/create" element={<CreateProducts />}></Route>
         <Route path="/update/:id" element={<UpdateProducts />}></Route>
+        <Route path="/help" element={<Help />}></Route>
       </Routes>
     </BrowserRouter>
   );
