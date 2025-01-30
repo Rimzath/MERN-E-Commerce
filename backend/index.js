@@ -45,6 +45,12 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get("/home", (req, res) => {
+  FormDataModel.find({})
+    .then((users) => res.json(users))
+    .catch((err) => res.json(err));
+});
+
 app.get("/", (req, res) => {
   ProductModel.find({})
     .then((products) => res.json(products))
