@@ -13,7 +13,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    if (userType == "Admin" && secretKey != "AdarshT") {
+    if (userType == "Admin" && secretKey != "rimzath123") {
       event.preventDefault();
       alert("Invalid Admin");
     } else {
