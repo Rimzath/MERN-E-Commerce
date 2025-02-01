@@ -14,21 +14,10 @@ const Login = () => {
 
     axios
       .post("http://localhost:3001/login", { email, password })
-      .then((res) => {
-        if (res.data.success) {
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-          window.location.href = "/home"; // Redirect to home page
-        } else {
-          alert(res.data.message);
-        }
-      })
-      .catch((err) => console.error("Login error:", err));
-
-    axios
-      .post("http://localhost:3001/login", { email, password })
       .then((result) => {
         if (result.data.success) {
           const { userType } = result.data.user; // Fetch userType from response
+          localStorage.setItem("user", JSON.stringify(result.data.user));
           console.log("Login Success");
           alert("Login successful!");
 
@@ -51,52 +40,49 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div
-        className="d-flex justify-content-center align-items-center text-center vh-100"
-        style={{
-          backgroundImage:
-            "linear-gradient(#00e3e6,#14d1e8,#6686f0,#707df1,#816df3,#9759f5,#ae44f7,#f800ff)",
-        }}
-      >
-        <div className="bg-white p-3 rounded" style={{ width: "40%" }}>
-          <h2 className="mb-3 text-primary">Login</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3 text-start">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                <strong>Email Id</strong>
-              </label>
-              <input
-                type="email"
-                placeholder="Enter Email"
-                className="form-control"
-                id="exampleInputEmail1"
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3 text-start">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                <strong>Password</strong>
-              </label>
-              <input
-                type="password"
-                placeholder="Enter Password"
-                className="form-control"
-                id="exampleInputPassword1"
-                onChange={(event) => setPassword(event.target.value)}
-                required
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          </form>
-          <p className="container my-2">Don&apos;t have an account?</p>
-          <Link to="/register" className="btn btn-secondary">
-            Register
-          </Link>
-        </div>
+    <div
+      className="d-flex justify-content-center align-items-center vh-100"
+      style={{
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      }}
+    >
+      <div className="bg-white p-4 rounded-4 shadow" style={{ width: "400px" }}>
+        <h2 className="text-center mb-4 text-primary">Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              <strong>Email</strong>
+            </label>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              className="form-control"
+              id="email"
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              <strong>Password</strong>
+            </label>
+            <input
+              type="password"
+              placeholder="Enter Password"
+              className="form-control"
+              id="password"
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100 mb-3">
+            Login
+          </button>
+        </form>
+        <p className="text-center mb-0">Don't have an account?</p>
+        <Link to="/register" className="btn btn-outline-secondary w-100 mt-2">
+          Register
+        </Link>
       </div>
     </div>
   );
