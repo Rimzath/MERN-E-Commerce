@@ -8,9 +8,11 @@ function UpdateProducts() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [image, setImage] = useState(null);
+  const [existingImage, setExistingImage] = useState("");
   const navigate = useNavigate();
 
-  // Populate the form fields with existing product data
+  // Fetch existing product data
   useEffect(() => {
     const urlGetProduct = `http://localhost:3001/getProducts/${id}`;
     axios
@@ -21,24 +23,41 @@ function UpdateProducts() {
         setDescription(result.data.description);
         setPrice(result.data.price);
         setQuantity(result.data.quantity);
+        setExistingImage(result.data.image); // Store existing image URL
       })
       .catch((err) => console.error("Error fetching product data:", err));
   }, [id]);
 
-  const updateProduct = (e) => {
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const updateProduct = async (e) => {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3001/updateProducts/${id}`, {
-        productName,
-        description,
-        price,
-        quantity,
-      })
-      .then((result) => {
-        console.log("Product updated successfully:", result);
-        navigate("/home");
-      })
-      .catch((err) => console.error("Error updating product:", err));
+    const formData = new FormData();
+    formData.append("productName", productName);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("quantity", quantity);
+    if (image) {
+      formData.append("image", image); // Append new image if selected
+    }
+
+    try {
+      const result = await axios.put(
+        `http://localhost:3001/updateProducts/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Product updated successfully:", result);
+      navigate("/home");
+    } catch (err) {
+      console.error("Error updating product:", err);
+    }
   };
 
   const handleCancel = () => {
@@ -48,7 +67,7 @@ function UpdateProducts() {
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
       <div className="formupd vw-100 bg-white rounded p-3">
-        <form onSubmit={updateProduct}>
+        <form onSubmit={updateProduct} encType="multipart/form-data">
           <h2>Update Product</h2>
           <div className="mb-2">
             <label htmlFor="input-name-update">Product Name</label>
@@ -98,13 +117,40 @@ function UpdateProducts() {
             />
           </div>
 
+          <div className="mb-2">
+            <label>Current Image:</label>
+            {existingImage && (
+              <div>
+                <img
+                  src={`http://localhost:3001/uploads/${existingImage}`}
+                  alt="Current Product"
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    objectFit: "cover",
+                    marginTop: "10px",
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <label htmlFor="input-image-update">Upload New Image</label>
+            <input
+              type="file"
+              className="form-control"
+              accept="image/*"
+              id="input-image-update"
+              onChange={handleImageChange}
+            />
+          </div>
+
           <div className="flexContainer">
-            <button className="btn btn-success btnSubmUpd">Update</button>
-            <button
-              onClick={handleCancel}
-              className="btn btn-danger"
-              id="btnCancelUpd"
-            >
+            <button className="btn btn-success btnSubmUpd" type="submit">
+              Update
+            </button>
+            <button onClick={handleCancel} className="btn btn-danger">
               Cancel
             </button>
           </div>
