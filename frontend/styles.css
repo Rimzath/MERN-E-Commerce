@@ -1,30 +1,7 @@
-/* Custom Styles for the Home Page */
-.home-page {
-    background-color: #f8f9fa;
-    min-height: 100vh;
-  }
-  
-  .home-page .container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  
-  .home-page h1 {
-    font-weight: bold;
-    color: #343a40;
-  }
-  
-  .home-page .btn-danger {
-    background-color: #dc3545;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
-  }
-  
-  /* Custom Styles for the Products Page */
-  .products-page {
+
+.products-page {
     background-color: #ffffff;
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
   
   .products-page .card {
@@ -33,48 +10,61 @@
   }
   
   .products-page .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
   .products-page .product-image {
-    height: 200px;
+    height: 150px; /* Smaller image height */
     object-fit: cover;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
   }
   
-  .products-page .btn-success {
-    background-color: #28a745;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
+  .products-page .card-body {
+    padding: 0.75rem; 
   }
   
-  .products-page .btn-dark {
-    background-color: #343a40;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
+  .products-page .card-title {
+    font-size: 0.9rem; 
+    font-weight: 600;
+  }
+  
+  .products-page .card-text {
+    font-size: 0.8rem; 
+  }
+  
+  .products-page .text-primary,
+  .products-page .text-secondary {
+    font-size: 0.8rem; 
+  }
+  
+  .products-page .btn {
+    font-size: 0.8rem; 
+    padding: 0.25rem 0.5rem;
   }
   
   .products-page .btn-primary {
     background-color: #007bff;
     border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
   }
   
   .products-page .btn-warning {
     background-color: #ffc107;
     border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
   }
   
   .products-page .btn-danger {
     background-color: #dc3545;
     border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+  }
+  
+  .products-page .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .products-page .btn-dark {
+    background-color: #343a40;
+    border: none;
   }
