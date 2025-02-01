@@ -1,78 +1,101 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-const Cart = () => {
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(savedCart);
-  }, []);
-
-  // Calculate total price
-  const totalPrice = cart.reduce((sum, product) => sum + product.price, 0);
-
-  // Handle Remove Item
-  const handleRemoveItem = (index) => {
-    const updatedCart = cart.filter((_, i) => i !== index);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  // Handle Clear Cart
-  const handleClearCart = () => {
-    setCart([]);
-    localStorage.removeItem("cart");
-  };
-
+const Help = () => {
   return (
-    <div className="d-flex vh-100 bg-light justify-content-center align-items-center">
-      <div className="tab vw-100 w-50 bg-white rounded p-3">
-        <Navbar />
-        <h2>🛒 Cart</h2>
-        <Link to="/home" className="btn btn-primary my-3">
-          ← Back to Home
-        </Link>
+    <div className="d-flex flex-column min-vh-100">
+      <Navbar />
+      <div className="container my-5 flex-grow-1">
+        <h2 className="text-center mb-4">Help & Support</h2>
 
-        {cart.length === 0 ? (
-          <h4>Your cart is empty.</h4>
-        ) : (
-          <>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((product, index) => (
-                  <tr key={index}>
-                    <td>{product.productName}</td>
-                    <td>${product.price}</td>
-                    <td>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleRemoveItem(index)}
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <h4>Total Price: ${totalPrice.toFixed(2)}</h4>
-            <button className="btn btn-danger" onClick={handleClearCart}>
-              Clear Cart
-            </button>
-          </>
-        )}
+        {/* FAQ Accordion */}
+        <div className="accordion" id="faqAccordion">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq1"
+              >
+                How do I place an order?
+              </button>
+            </h2>
+            <div id="faq1" className="accordion-collapse collapse show">
+              <div className="accordion-body">
+                To place an order, simply browse our products, add items to your
+                cart, and proceed to checkout.
+              </div>
+            </div>
+          </div>
+
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq2"
+              >
+                What payment methods are accepted?
+              </button>
+            </h2>
+            <div id="faq2" className="accordion-collapse collapse">
+              <div className="accordion-body">
+                We accept credit/debit cards, PayPal, and other secure payment
+                methods.
+              </div>
+            </div>
+          </div>
+
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq3"
+              >
+                How can I track my order?
+              </button>
+            </h2>
+            <div id="faq3" className="accordion-collapse collapse">
+              <div className="accordion-body">
+                You can track your order using the tracking link sent to your
+                email after purchase.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="mt-5">
+          <h4 className="mb-4">Contact Us</h4>
+          <p className="mb-4">
+            If you need further assistance, feel free to contact our support
+            team.
+          </p>
+          <ul className="list-group">
+            <li className="list-group-item">
+              📧 Email:{" "}
+              <a
+                href="mailto:support@myshop.com"
+                className="text-decoration-none"
+              >
+                support@myshop.com
+              </a>
+            </li>
+            <li className="list-group-item">📞 Phone: +94-778-0823</li>
+            <li className="list-group-item">
+              📍 Address: 123 Main Street, City, Colombo.
+            </li>
+          </ul>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
-export default Cart;
+export default Help;

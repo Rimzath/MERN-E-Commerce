@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Help = () => {
   return (
     <div className="container mt-5">
       <Navbar />
       <h2 className="text-center mb-4">Help & Support</h2>
-
       <div className="accordion" id="faqAccordion">
         <div className="accordion-item">
           <h2 className="accordion-header">
@@ -65,8 +65,6 @@ const Help = () => {
           </div>
         </div>
       </div>
-
-      {/* Contact Section */}
       <div className="mt-5">
         <h4>Contact Us</h4>
         <p>
@@ -82,6 +80,7 @@ const Help = () => {
           </li>
         </ul>
       </div>
+      <Footer />;
     </div>
   );
 };
