@@ -43,64 +43,67 @@ const Products = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Products</h2>
-        <Link to="../cart" className="btn btn-dark">
-          🛒 Cart ({cart.length})
+    <div className="products-page">
+      <div className="container my-5">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h1 className="display-5">Our Products</h1>
+          <Link to="/cart" className="btn btn-dark btn-lg">
+            🛒 Cart ({cart.length})
+          </Link>
+        </div>
+
+        <Link to="/create" className="btn btn-success btn-lg mb-4">
+          Add Product +
         </Link>
-      </div>
 
-      <Link to="/create" className="btn btn-success mb-3">
-        Add +
-      </Link>
+        {/* Grid Layout for Products */}
+        <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+          {products.map((product) => (
+            <div key={product._id} className="col">
+              <div className="card h-100 shadow-sm">
+                {/* Product Image */}
+                <img
+                  src={`http://localhost:3001/uploads/${product.image}`}
+                  alt={product.productName}
+                  className="card-img-top product-image"
+                />
 
-      {/* Grid Layout for Products */}
-      <div className="row">
-        {products.map((product) => (
-          <div key={product._id} className="col-md-3 mb-4">
-            <div className="card shadow-sm border-0">
-              {/* Product Image */}
-              <img
-                src={`http://localhost:3001/uploads/${product.image}`}
-                alt={product.productName}
-                className="card-img-top"
-                style={{ height: "200px", objectFit: "cover" }}
-              />
+                {/* Product Details */}
+                <div className="card-body">
+                  <h5 className="card-title">{product.productName}</h5>
+                  <p className="card-text text-muted">{product.description}</p>
+                  <h6 className="text-primary">${product.price}</h6>
+                  <p className="text-secondary">
+                    Available: {product.quantity}
+                  </p>
 
-              {/* Product Details */}
-              <div className="card-body text-center">
-                <h5 className="card-title">{product.productName}</h5>
-                <p className="text-muted">{product.description}</p>
-                <h6 className="text-primary">${product.price}</h6>
-                <p>Available: {product.quantity}</p>
+                  {/* Buttons */}
+                  <div className="d-flex justify-content-between align-items-center">
+                    <Link
+                      to={`/update/${product._id}`}
+                      className="btn btn-warning btn-sm"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
 
-                {/* Buttons */}
-                <div className="d-flex justify-content-center gap-2">
-                  <Link
-                    to={`/update/${product._id}`}
-                    className="btn btn-warning btn-sm"
-                  >
-                    Edit
-                  </Link>
                   <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => handleDelete(product._id)}
+                    className="btn btn-primary w-100 mt-3"
+                    onClick={() => handleAddToCart(product)}
                   >
-                    Delete
+                    Add to Cart
                   </button>
                 </div>
-
-                <button
-                  className="btn btn-primary btn-block mt-2"
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

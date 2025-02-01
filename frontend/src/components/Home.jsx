@@ -15,26 +15,31 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center text-center vh-100 bg-primary">
+    <div className="home-page">
       <Navbar />
+      <div className="container my-5">
+        <div className="text-center">
+          <h1 className="display-4 mb-4">
+            Welcome {user && user.email ? user.email : "Guest"}
+          </h1>
+          <p className="lead">
+            {user ? "You are logged in!" : "Please log in to continue"}
+          </p>
+          {user && (
+            <Link
+              to="/login"
+              className="btn btn-danger btn-lg"
+              onClick={() => {
+                localStorage.removeItem("user");
+                setUser(null); // Update state to reflect logout
+              }}
+            >
+              Logout
+            </Link>
+          )}
+        </div>
+      </div>
       <Products />
-      <h5>
-        Welcome {user && user.email ? user.email : "Guest"}
-        <br />
-        {user ? "Login Successfully" : "Please log in to continue"}
-      </h5>
-      {user && (
-        <Link
-          to="/login"
-          className="btn btn-light my-5"
-          onClick={() => {
-            localStorage.removeItem("user");
-            setUser(null); // Update state to reflect logout
-          }}
-        >
-          Logout
-        </Link>
-      )}
     </div>
   );
 };
