@@ -68,3 +68,46 @@
     background-color: #343a40;
     border: none;
   }
+
+  /* Footer Styles */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 2rem 0;
+  }
+  
+  .footer h5 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+  
+  .footer p,
+  .footer a {
+    font-size: 0.9rem;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  .footer ul {
+    padding-left: 0;
+    list-style: none;
+  }
+  
+  .footer ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+  }
+  
+  .footer .text-center {
+    font-size: 0.8rem;
+  }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Products from "./CRUD/Products";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -40,6 +41,7 @@ const Home = () => {
         </div>
       </div>
       <Products />
+      <Footer />
     </div>
   );
 };
