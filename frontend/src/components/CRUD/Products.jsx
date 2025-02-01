@@ -29,7 +29,7 @@ const Products = () => {
         .delete(`http://localhost:3001/deleteproducts/${id}`)
         .then(() => {
           console.log("Product deleted successfully");
-          setProduct(products.filter((product) => product._id !== id)); // Update the state
+          setProduct(products.filter((product) => product._id !== id));
         })
         .catch((err) => console.error("Error deleting product:", err));
     }
@@ -39,14 +39,14 @@ const Products = () => {
   const handleAddToCart = (product) => {
     const updatedCart = [...cart, product];
     setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Save to localStorage
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
     <div className="products-page">
       <div className="container my-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h2 className="h4">Our Products</h2> {/* Smaller heading */}
+          <h2 className="h4">Our Products</h2>
           <Link to="/cart" className="btn btn-dark btn-sm">
             🛒 Cart ({cart.length})
           </Link>
@@ -56,35 +56,25 @@ const Products = () => {
           Add Product +
         </Link>
 
-        {/* Grid Layout for Products - 5 columns */}
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
           {products.map((product) => (
             <div key={product._id} className="col">
               <div className="card h-100 shadow-sm">
-                {/* Product Image */}
                 <img
                   src={`http://localhost:3001/uploads/${product.image}`}
                   alt={product.productName}
                   className="card-img-top product-image"
                 />
 
-                {/* Product Details */}
                 <div className="card-body p-2">
                   <h6 className="card-title mb-1">{product.productName}</h6>{" "}
-                  {/* Smaller heading */}
                   <p className="card-text text-muted small mb-1">
                     {product.description}
                   </p>{" "}
-                  {/* Smaller text */}
-                  <h6 className="text-primary small mb-1">
-                    ${product.price}
-                  </h6>{" "}
-                  {/* Smaller text */}
+                  <h6 className="text-primary small mb-1">${product.price}</h6>{" "}
                   <p className="text-secondary small mb-2">
                     Available: {product.quantity}
                   </p>{" "}
-                  {/* Smaller text */}
-                  {/* Buttons */}
                   <div className="d-flex justify-content-between align-items-center">
                     <Link
                       to={`/update/${product._id}`}
