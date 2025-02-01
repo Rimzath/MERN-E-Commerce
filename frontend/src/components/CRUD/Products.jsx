@@ -44,20 +44,20 @@ const Products = () => {
 
   return (
     <div className="products-page">
-      <div className="container my-5">
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <h1 className="display-5">Our Products</h1>
-          <Link to="/cart" className="btn btn-dark btn-lg">
+      <div className="container my-4">
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h2 className="h4">Our Products</h2> {/* Smaller heading */}
+          <Link to="/cart" className="btn btn-dark btn-sm">
             🛒 Cart ({cart.length})
           </Link>
         </div>
 
-        <Link to="/create" className="btn btn-success btn-lg mb-4">
+        <Link to="/create" className="btn btn-success btn-sm mb-3">
           Add Product +
         </Link>
 
-        {/* Grid Layout for Products */}
-        <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        {/* Grid Layout for Products - 5 columns */}
+        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
           {products.map((product) => (
             <div key={product._id} className="col">
               <div className="card h-100 shadow-sm">
@@ -69,14 +69,21 @@ const Products = () => {
                 />
 
                 {/* Product Details */}
-                <div className="card-body">
-                  <h5 className="card-title">{product.productName}</h5>
-                  <p className="card-text text-muted">{product.description}</p>
-                  <h6 className="text-primary">${product.price}</h6>
-                  <p className="text-secondary">
+                <div className="card-body p-2">
+                  <h6 className="card-title mb-1">{product.productName}</h6>{" "}
+                  {/* Smaller heading */}
+                  <p className="card-text text-muted small mb-1">
+                    {product.description}
+                  </p>{" "}
+                  {/* Smaller text */}
+                  <h6 className="text-primary small mb-1">
+                    ${product.price}
+                  </h6>{" "}
+                  {/* Smaller text */}
+                  <p className="text-secondary small mb-2">
                     Available: {product.quantity}
-                  </p>
-
+                  </p>{" "}
+                  {/* Smaller text */}
                   {/* Buttons */}
                   <div className="d-flex justify-content-between align-items-center">
                     <Link
@@ -92,9 +99,8 @@ const Products = () => {
                       Delete
                     </button>
                   </div>
-
                   <button
-                    className="btn btn-primary w-100 mt-3"
+                    className="btn btn-primary btn-sm w-100 mt-2"
                     onClick={() => handleAddToCart(product)}
                   >
                     Add to Cart
